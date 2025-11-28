@@ -2,6 +2,13 @@
 # 
 # basic hardening script
 
+audit_dir=$HOME/.local/share/hardening-automator/logs
+mkdir -p $audit_dir
+
+echo "Running baseline security audit..."
+sudo lynis audit system > $audit_dir/before_audit.log 2>&1
+
+
 echo "Running baseline security checks..."
 sudo apt update
 
@@ -13,7 +20,7 @@ sudo ufw --force enable
 
 echo "Applying SSH hardening..."
 sudo sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
-sudo systemctl reload sshd
+sudo systemctl reload sshd 2>/dev/null || sudo systemctl reload ssh
 
 echo "Running security audit..."
-sudo lynis audit system
+sudo lynis audit system > $audit_dir/after_audit.log 2>&1

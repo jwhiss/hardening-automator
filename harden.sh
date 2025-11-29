@@ -3,13 +3,14 @@
 # basic hardening script
 
 # environment setup
-LOG_FILE=~/.local/share/hardening-automator/logs
+LOG_FOLDER=~/.local/share/hardening-automator/logs
+LOG_FILE=$LOG_FOLDER/harden.log
 export LOG_FILE
 mkdir -p $audit_dir
 source "./modules/module_lib.sh"
 
 echo "Running baseline security audit..."
-sudo lynis audit system > $LOG_FILE/before_audit.log 2>&1
+sudo lynis audit system > $LOG_FOLDER/before_audit.log 2>&1
 
 
 echo "Running baseline security checks..."
@@ -26,5 +27,5 @@ sudo sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/
 sudo systemctl reload sshd 2>/dev/null || sudo systemctl reload ssh
 
 echo "Running final security audit..."
-sudo lynis audit system > $LOG_FILE/after_audit.log 2>&1
+sudo lynis audit system > $LOG_FOLDER/after_audit.log 2>&1
 

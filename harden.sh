@@ -2,7 +2,7 @@
 # 
 # basic hardening script
 
-audit_dir=$HOME/.local/share/hardening-automator/logs
+audit_dir=~/.local/share/hardening-automator/logs
 mkdir -p $audit_dir
 
 echo "Running baseline security audit..."
@@ -24,3 +24,4 @@ sudo systemctl reload sshd 2>/dev/null || sudo systemctl reload ssh
 
 echo "Running security audit..."
 sudo lynis audit system > $audit_dir/after_audit.log 2>&1
+

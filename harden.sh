@@ -2,8 +2,11 @@
 # 
 # basic hardening script
 
+# environment setup
 LOG_FILE=~/.local/share/hardening-automator/logs
+export LOG_FILE
 mkdir -p $audit_dir
+source "./modules/module_lib.sh"
 
 echo "Running baseline security audit..."
 sudo lynis audit system > $LOG_FILE/before_audit.log 2>&1

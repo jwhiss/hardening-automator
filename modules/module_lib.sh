@@ -5,7 +5,7 @@
 log() {
 	local level="$1"
 	local msg="$2"
-	echo "$(date '+%Y-%m-%d %H:%M:%S') [$level\ $msg" tee -a "$LOG_FILE"
+	echo "$(date '+%Y-%m-%d %H:%M:%S') [$level] $msg" | tee -a "$LOG_FILE"
 }
 
 require_binary() {

@@ -18,7 +18,7 @@ require_binary() {
 
 backup_file() {
 	local file="$1"
-	if [ if "$file" ]; then
+	if [ -f "$file" ]; then
 		local backup="${file}.bak.$(date +%s)"
 		cp "$file" "$backup"
 		log "INFO" "Backup created: $backup"

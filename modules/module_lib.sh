@@ -35,9 +35,16 @@ update_or_append() {
 		return 0
 	fi
         
-	# key exists but is inactive or wrong
-	if grep -Eq "^[[:space:]]*#?[[:space:]]*$key\b" "$file"; then
-		sed -i "s|^[[:space:]]*#?[[:space:]]*$key.*|$key $value|" "$file"
+	# key exists but is inactive
+	if grep -Eq "^[[:space:]]*#*[[:space:]]*$key\b" "$file"; then
+		sed -i "s|^[[:space:]]*#*[[:space:]]*$key.*|$key $value|" "$file"
+		log "INFO" "Activated $key $value in $file"
+		return 0
+	fi
+
+	# key exists but value is wrong
+	if grep -Eq "^[[:space:]]*$key\b" "$file"; then
+		sed -i  "s|^[[:space:]]*$key.*|$key $value|" "$file"
 		log "INFO" "Updated $key to $value in $file"
 		return 0
 	fi

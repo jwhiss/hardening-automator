@@ -6,8 +6,7 @@
 LOG_FOLDER=~/.local/share/hardening-automator/logs
 LOG_FILE=$LOG_FOLDER/harden.log
 export LOG_FILE
-mkdir -p $audit_dir
-source "./modules/module_lib.sh"
+mkdir -p $LOG_FOLDER
 
 echo "Running baseline security audit..."
 sudo lynis audit system > $LOG_FOLDER/before_audit.log 2>&1
@@ -23,8 +22,7 @@ sudo ufw allow OpenSSH
 sudo ufw --force enable
 
 echo "Applying SSH hardening..."
-sudo sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
-sudo systemctl reload sshd 2>/dev/null || sudo systemctl reload ssh
+./modules/ssh_hardening.sh
 
 echo "Running final security audit..."
 sudo lynis audit system > $LOG_FOLDER/after_audit.log 2>&1

@@ -5,6 +5,7 @@
 # environment setup
 LOG_FOLDER=~/.local/share/hardening-automator/logs
 LOG_FILE=$LOG_FOLDER/harden.log
+export LOG_FOLDER
 export LOG_FILE
 mkdir -p $LOG_FOLDER
 

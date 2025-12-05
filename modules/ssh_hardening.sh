@@ -1,6 +1,6 @@
 #! /bin/bash
 #
-# Configures SSH for access control, attack surface reduction, protocol hyeine, and auditability
+# Configures SSH for access control, attack surface reduction, protocol hygiene, and auditability
 # 
 # Joel Whissel
 

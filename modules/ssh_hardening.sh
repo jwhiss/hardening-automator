@@ -24,4 +24,4 @@ if systemctl list-unit-files | grep -q "^ssh.service"; then
 else
     systemctl restart sshd
 fi
-log "INFO" "Restarted SSH service due to configuration changes."
+log "INFO" "Restarted SSH service."

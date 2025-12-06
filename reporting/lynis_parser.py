@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Parse Lynis security audit reports and extract relevant information for analysis.
+Parse Lynis security audit reports and extract hardening index scores.
 
 Author: Joel Whissel
 """
@@ -10,6 +10,7 @@ import os
 import re
 
 def strip_ansi(log):
+    """Remove ANSI escape sequences from a list of log lines."""
     ansi_escape = re.compile(r'\x1B[@-_][0-?]*[ -/]*[@-~]')
     result = []
 
@@ -20,6 +21,7 @@ def strip_ansi(log):
 
 
 def extract_score(log):
+    """Extract the Lynis hardening index from cleaned log lines."""
     score_pattern = re.compile(r"Hardening index\s*:\s*(\d+)\b")
 
     for line in log:
@@ -31,6 +33,7 @@ def extract_score(log):
 
 
 def main():
+    """Load logs, strip ANSI codes, extract scores, and print hardening index results."""
     log_path = os.getenv("LOG_FOLDER")
 
     if not log_path:

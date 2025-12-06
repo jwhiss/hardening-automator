@@ -9,6 +9,15 @@ Author: Joel Whissel
 import os
 import re
 
+def strip_ansi(log):
+    ansi_escape = re.compile(r'\x1B[@-_][0-?]*[ -/]*[@-~]')
+    result = []
+
+    for line in log:
+        result.append(ansi_escape.sub('', line))
+
+    return result
+
 
 def extract_score(log):
     score_pattern = re.compile(r"Hardening index\s*:\s*(\d+)\b")
@@ -28,10 +37,10 @@ def main():
         raise RuntimeError("LOG_FOLDER  is not set.")
 
     with open(os.path.join(log_path, "before_audit.log"), "r") as file:
-        before_log = file.readlines()
+        before_log = strip_ansi(file.readlines())
 
     with open(os.path.join(log_path, "after_audit.log"), "r") as file:
-        after_log = file.readlines()
+        after_log = strip_ansi(file.readlines())
 
     before_score = extract_score(before_log)
     after_score = extract_score(after_log)

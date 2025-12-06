@@ -12,7 +12,6 @@ mkdir -p $LOG_FOLDER
 echo "Running baseline security audit..."
 sudo lynis audit system > $LOG_FOLDER/before_audit.log 2>&1
 
-
 echo "Running baseline security checks..."
 sudo apt update
 

@@ -28,3 +28,5 @@ echo "Applying SSH hardening..."
 echo "Running final security audit..."
 sudo lynis audit system > $LOG_FOLDER/after_audit.log 2>&1
 
+echo "Hardening complete. Logs are available in $LOG_FOLDER."
+

@@ -9,9 +9,9 @@ Author: Joel Whissel
 import os
 import re
 
-# extract the hardening index score from a Lynis log file. Format of line in log is "Hardening index : 45" ...
+
 def extract_score(log):
-    score_pattern = re.compile(r"Hardening index\s*:\s*(\d+)")
+    score_pattern = re.compile(r"Hardening index\s*:\s*(\d+)\b")
 
     for line in log:
         match = score_pattern.search(line)

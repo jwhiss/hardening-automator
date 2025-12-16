@@ -25,7 +25,8 @@ update_or_append /etc/ssh/sshd_config "ClientAliveInterval" "300"
 update_or_append /etc/ssh/sshd_config "ClientAliveCountMax" "0"
 update_or_append /etc/ssh/sshd_config "AllowTcpForwarding" "no"
 update_or_append /etc/ssh/sshd_config "X11Forwarding" "no"
-update_or_append /etc/ssh/sshd_config "AllowAgentForwarding" "no
+update_or_append /etc/ssh/sshd_config "AllowAgentForwarding" "no"
+update_or_append /etc/ssh/sshd_config "Port" ""
 
 if systemctl list-unit-files | grep -q "^ssh.service"; then
     systemctl restart ssh

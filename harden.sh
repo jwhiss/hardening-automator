@@ -3,7 +3,7 @@
 # basic hardening script
 
 # environment setup
-LOG_FOLDER=~/.local/share/hardening-automator/logs
+LOG_FOLDER=~/.local/share/hardening_automator/logs
 LOG_FILE=$LOG_FOLDER/harden.log
 export LOG_FOLDER
 export LOG_FILE

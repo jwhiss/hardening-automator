@@ -6,6 +6,7 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LOG_FOLDER=~/.local/share/hardening_automator/logs
 LOG_FILE=$LOG_FOLDER/harden.log
+source "$SCRIPT_DIR/modules/module_lib.sh"
 export LOG_FOLDER
 export LOG_FILE
 mkdir -p $LOG_FOLDER

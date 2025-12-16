@@ -20,6 +20,7 @@ update_or_append /etc/ssh/sshd_config "Ciphers" "chacha20-poly1305@openssh.com,a
 update_or_append /etc/ssh/sshd_config "MACs" "hmac-sha2-512,hmac-sha2-256"
 update_or_append /etc/ssh/sshd_config "MaxAuthTries" "3"
 update_or_append /etc/ssh/sshd_config "MaxSessions" "2"
+update_or_append /etc/ssh/sshd_config "LogLevel" "VERBOSE"
 
 if systemctl list-unit-files | grep -q "^ssh.service"; then
     systemctl restart ssh

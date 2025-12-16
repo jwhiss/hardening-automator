@@ -10,18 +10,21 @@ export LOG_FOLDER
 export LOG_FILE
 mkdir -p $LOG_FOLDER
 
+echo "Running baseline security audit..."
 require_binary lynis || {
     log "INFO" "Lynis not found, installing..."
     apt-get update && apt-get install -y lynis
 }
-
-echo "Running baseline security audit..."
 sudo lynis audit system > $LOG_FOLDER/before_audit.log 2>&1
 
 echo "Running baseline security checks..."
 sudo apt update
 
 echo "Configuring UFW..."
+require_binary ufw || {
+    log "INFO" "UFW not found, installing..."
+    apt-get update && apt-get install -y ufw
+}
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
 sudo ufw allow OpenSSH

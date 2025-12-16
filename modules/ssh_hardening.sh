@@ -6,8 +6,8 @@
 
 source "$(dirname "$0")/module_lib.sh"
 
-require_binary "sshd" 
-require_binary "systemctl"
+require_binary "sshd" "ERROR"
+require_binary "systemctl" "ERROR"
 
 backup_file /etc/ssh/sshd_config
 

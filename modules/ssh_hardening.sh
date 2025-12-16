@@ -21,6 +21,8 @@ update_or_append /etc/ssh/sshd_config "MACs" "hmac-sha2-512,hmac-sha2-256"
 update_or_append /etc/ssh/sshd_config "MaxAuthTries" "3"
 update_or_append /etc/ssh/sshd_config "MaxSessions" "2"
 update_or_append /etc/ssh/sshd_config "LogLevel" "VERBOSE"
+update_or_append /etc/ssh/sshd_config "ClientAliveInterval" "300"
+update_or_append /etc/ssh/sshd_config "ClientAliveCountMax" "0"
 
 if systemctl list-unit-files | grep -q "^ssh.service"; then
     systemctl restart ssh

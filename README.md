@@ -33,9 +33,9 @@ The main hardening script:
 
 ## Requirements
 - Ubuntu or another Debian-based Linux distribution
-- Lynis
+- Lynis (will be installed if not present)
 - Python 3
-- UFW
+- UFW (will be installed if not present)
 - Sudo privileges
 
 ## Notes

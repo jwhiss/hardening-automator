@@ -10,6 +10,11 @@ export LOG_FOLDER
 export LOG_FILE
 mkdir -p $LOG_FOLDER
 
+require_binary lynis || {
+    log "INFO" "Lynis not found, installing..."
+    apt-get update && apt-get install -y lynis
+}
+
 echo "Running baseline security audit..."
 sudo lynis audit system > $LOG_FOLDER/before_audit.log 2>&1
 

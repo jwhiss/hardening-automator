@@ -10,8 +10,9 @@ log() {
 
 require_binary() {
 	local bin="$1"
+	local level="$2"
 	if ! command -v "$bin" >/dev/null 2>&1; then
-		log "ERROR" "Required binary '$bin' not found."
+		log "$level" "Required binary '$bin' not found."
 		return 1
 	fi
 }

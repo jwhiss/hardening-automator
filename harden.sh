@@ -19,18 +19,18 @@ require_binary lynis "INFO" || {
 sudo lynis audit system > $LOG_FOLDER/before_audit.log 2>&1
 
 echo "Running baseline security checks..."
-require_binary fail2ban "INFO" || {
-    log "INFO" "Installing fail2ban..."
-    apt-get update && apt-get install -y fail2ban
-}
-cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 sudo apt update
 sudo apt upgrade -y
+require_binary fail2ban "INFO" || {
+    log "INFO" "Installing fail2ban..."
+    apt-get install -y fail2ban
+}
+cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 
 echo "Configuring UFW..."
 require_binary ufw "INFO" || {
     log "INFO" "Installing UFW..."
-    apt-get update && apt-get install -y ufw
+    apt-get install -y ufw
 }
 sudo ufw default deny incoming
 sudo ufw default allow outgoing

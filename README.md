@@ -13,10 +13,10 @@ The project runs Lynis twice:
 Audit output and logs are stored in the local data directory (assuming the script is run with sudo privileges: 
 `/root/.local/share/hardening_automator/logs`).
 
-### SSH Hardening Module
-The SSH hardening logic, located in `modules/ssh_hardening.sh`, updates `sshd_config` using idempotent key-value 
-manipulation functions provided by `module_lib.sh`. These updates enforce stricter SSH security settings while avoiding 
-duplicate or conflicting entries.
+### Baseline Security Checks
+The baseline checks include:
+- Verifying that Lynis is installed; if not, it installs Lynis using the system package manager.
+- Updating the system package lists and upgrading installed packages to their latest versions.
 
 ### Firewall Configuration (UFW)
 The main hardening script:
@@ -24,6 +24,11 @@ The main hardening script:
 - Allows outgoing traffic by default
 - Allows the OpenSSH profile
 - Enables UFW in non-interactive mode
+
+### SSH Hardening Module
+The SSH hardening logic, located in `modules/ssh_hardening.sh`, updates `sshd_config` using idempotent key-value 
+manipulation functions provided by `module_lib.sh`. These updates enforce stricter SSH security settings while avoiding 
+duplicate or conflicting entries.
 
 ### Lynis Hardening Index Comparison
 `reporting/lynis_parser.py` parses the baseline and final Lynis audit logs and extracts:

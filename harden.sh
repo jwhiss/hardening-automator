@@ -25,6 +25,7 @@ require_binary fail2ban "INFO" || {
     log "INFO" "Installing fail2ban..."
     apt-get update && apt-get install -y fail2ban
 }
+cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 
 echo "Configuring UFW..."
 require_binary ufw "INFO" || {

@@ -20,6 +20,7 @@ sudo lynis audit system > $LOG_FOLDER/before_audit.log 2>&1
 
 echo "Running baseline security checks..."
 sudo apt update
+sudo apt upgrade -y
 require_binary fail2ban "INFO" || {
     log "INFO" "Installing fail2ban..."
     apt-get update && apt-get install -y fail2ban
